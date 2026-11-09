@@ -56,7 +56,13 @@ a{text-decoration:none}
       <div class="kicker">FREE PLAYBOOK FOR SOLO WOMEN FOUNDERS</div>
       <h1 style="margin:0;font-family:'Advercase',serif;font-weight:700;font-size:clamp(34px,4.6vw,58px);line-height:1.08;letter-spacing:.02em;text-wrap:balance">Find what your audience wants to hear. Turn it into 6 hooks.</h1>
       <p class="p" style="font-size:clamp(18px,2vw,21px);max-width:540px">The Hook Finder Playbook shows you how to read your audience's own words and turn them into posts people stop for. No guessing. No copying what's trending.</p>
-      <div id="get" style="margin:24px 0 0;max-width:460px;background:#FFFDFC;border-radius:20px;padding:8px 12px 4px;box-shadow:0 10px 30px rgba(47,13,24,.10)"><iframe src="https://tally.so/embed/NqDaDG?hideTitle=1&amp;transparentBackground=1&amp;dynamicHeight=0" title="Get the playbook" loading="lazy" style="width:100%;height:230px;border:0;display:block"></iframe></div>
+      <div id="get" style="margin:24px 0 0;max-width:460px">
+        <form id="hf" novalidate style="display:flex;flex-wrap:wrap;gap:10px">
+          <input id="hf-email" type="email" required autocomplete="email" placeholder="Your email" aria-label="Your email" style="flex:1 1 220px;min-width:0;min-height:54px;padding:0 20px;border:2px solid #E7D3DA;border-radius:999px;font:500 17px 'DM Sans',sans-serif;color:#2F0D18;background:#FFFDFC;outline:none">
+          <button id="hf-btn" class="btn btn-berry" type="submit" style="border:0;cursor:pointer;flex:0 0 auto">Email me the playbook</button>
+        </form>
+        <p id="hf-msg" role="status" style="margin:12px 0 0;font-size:16px;font-weight:700;color:#AB274F;display:none"></p>
+      </div>
       <p style="margin:12px 0 0;font-size:14px">Free. 11 pages. Fill in the blanks. Post this week.</p>
     </div>
     <div style="flex:1 1 300px;min-width:0;display:flex;justify-content:center">
@@ -151,5 +157,23 @@ a{text-decoration:none}
   Cheyma Kahouach &nbsp;·&nbsp; <a href="https://www.instagram.com/iamcheyma" style="color:#AB274F;font-weight:700">@iamcheyma</a>
 </div>
 
+<script>
+(function(){
+var f=document.getElementById("hf"),e=document.getElementById("hf-email"),b=document.getElementById("hf-btn"),m=document.getElementById("hf-msg");
+f.addEventListener("submit",function(ev){
+ev.preventDefault();
+var v=e.value.trim();
+m.style.display="block";
+if(!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v)){m.textContent="Please enter a valid email.";return;}
+b.disabled=true;b.style.opacity=".6";m.textContent="Sending...";
+fetch("/api/subscribe",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({email:v})})
+.then(function(r){return r.json()})
+.then(function(d){
+if(d.ok){f.style.display="none";m.textContent="Check your inbox. The playbook is on its way. If you do not see it, check spam.";}
+else{b.disabled=false;b.style.opacity="1";m.textContent="Something went wrong. Please try again.";}
+}).catch(function(){b.disabled=false;b.style.opacity="1";m.textContent="Something went wrong. Please try again.";});
+});
+})();
+</script>
 </body>
 </html>
