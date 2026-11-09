@@ -62,6 +62,7 @@ a{text-decoration:none}
           <button id="hf-btn" class="btn btn-berry" type="submit" style="border:0;cursor:pointer;flex:0 0 auto">Email me the playbook</button>
         </form>
         <p id="hf-msg" role="status" style="margin:12px 0 0;font-size:16px;font-weight:700;color:#AB274F;display:none"></p>
+        <p id="hf-dl" style="margin:16px 0 0;display:none"><a class="btn btn-berry" href="/hook-finder/HookFinderPlaybook.pdf" download>Download here instead</a></p>
       </div>
       <p style="margin:12px 0 0;font-size:14px">Free. 11 pages. Fill in the blanks. Post this week.</p>
     </div>
@@ -159,7 +160,7 @@ a{text-decoration:none}
 
 <script>
 (function(){
-var f=document.getElementById("hf"),e=document.getElementById("hf-email"),b=document.getElementById("hf-btn"),m=document.getElementById("hf-msg");
+var f=document.getElementById("hf"),e=document.getElementById("hf-email"),b=document.getElementById("hf-btn"),m=document.getElementById("hf-msg"),dl=document.getElementById("hf-dl");
 f.addEventListener("submit",function(ev){
 ev.preventDefault();
 var v=e.value.trim();
@@ -169,7 +170,7 @@ b.disabled=true;b.style.opacity=".6";m.textContent="Sending...";
 fetch("/api/subscribe",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({email:v})})
 .then(function(r){return r.json()})
 .then(function(d){
-if(d.ok){f.style.display="none";m.textContent="Check your inbox. The playbook is on its way. If you do not see it, check spam.";}
+if(d.ok){f.style.display="none";dl.style.display="block";m.textContent="Check your inbox. The playbook is on its way. If you do not see it, check spam.";}
 else{b.disabled=false;b.style.opacity="1";m.textContent="Something went wrong. Please try again.";}
 }).catch(function(){b.disabled=false;b.style.opacity="1";m.textContent="Something went wrong. Please try again.";});
 });
