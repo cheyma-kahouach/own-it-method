@@ -3,12 +3,15 @@ const FROM = "Cheyma Kahouach <hello@cheymakahouach.com>";
 
 const html = `<div style="background:#FFFDFC;padding:32px 16px;font-family:Arial,sans-serif;color:#2F0D18">
 <div style="max-width:520px;margin:0 auto;font-size:17px;line-height:1.6">
-<p style="margin:0 0 16px">Hi,</p>
-<p style="margin:0 0 16px">Here is your Hook Finder Playbook. Open it, fill in the blanks and post your first hook this week.</p>
-<p style="margin:28px 0"><a href="${PDF}" style="background:#AB274F;color:#FFFDFC;text-decoration:none;font-weight:700;padding:16px 32px;border-radius:999px;display:inline-block">Download the playbook</a></p>
-<p style="margin:0 0 16px">It is also attached to this email.</p>
-<p style="margin:0 0 16px">Hit reply and tell me which hook you posted first. I read every message.</p>
-<p style="margin:24px 0 0">Cheyma</p>
+<p style="margin:0 0 16px">Hi babe! \u{1F497}</p>
+<p style="margin:0 0 16px">Welcome to the world of women who have steady inbound leads coming in from Instagram. every. single. week.</p>
+<p style="margin:0 0 16px">Your Hook Finder Playbook is right here:</p>
+<p style="margin:24px 0"><a href="${PDF}" style="background:#AB274F;color:#FFFDFC;text-decoration:none;font-weight:700;padding:16px 32px;border-radius:999px;display:inline-block">Download the playbook</a></p>
+<p style="margin:0 0 16px">Fair warning: it only works if you fill it in. Reading it and nodding does nothing, trust me.</p>
+<p style="margin:0 0 16px">I'm Cheyma. 4 years of doing this. No degree. No first job (kind of). Just sheer will and an ever growing need to own as many pink trinkets and Hello Kitty plushies as possible, which means I need a lot of money, high maintenance girl things. If you have to know one thing about me, it's that as much as I love doom scrolling, sleeping in and iced matcha lattes, I love seeing women thrive online and build personal brands that actually support them financially.</p>
+<p style="margin:0 0 16px">Judge my free stuff yourself. If it's fluff, it's fluff, tell me. If it helps, even better.</p>
+<p style="margin:24px 0 16px">Cheyma \u{1F497}</p>
+<p style="margin:0">PS. Do you know exactly who you're posting for right now? Yes or no? Hit reply. I WILL reply to you, pinky promise.</p>
 </div></div>`;
 
 module.exports = async (req, res) => {
@@ -29,7 +32,7 @@ module.exports = async (req, res) => {
       from: FROM,
       to: [email],
       reply_to: "hello@cheymakahouach.com",
-      subject: "Your Hook Finder Playbook",
+      subject: "here's the playbook, babe \u{1F48C}",
       html,
       attachments: [{ filename: "The Hook Finder Playbook.pdf", path: PDF }],
     }),
